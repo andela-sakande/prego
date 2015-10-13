@@ -40,3 +40,8 @@ Route::post('/auth/signin', [
     'uses' => '\Prego\Http\Controllers\AuthController@postLogIn',
     'middleware' => ['guest']
 ]);
+
+Route::get('/logout', [
+    'uses' => '\Prego\Http\Controllers\AuthController@logOut',
+    'as'   => 'auth.logout'
+]);
