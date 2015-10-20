@@ -46,4 +46,24 @@ Route::get('/logout', [
     'as'   => 'auth.logout'
 ]);
 
+#Project routes using resource
 Route::resource('projects', 'ProjectController');
+
+# Task routes
+Route::post('projects/{projects}/tasks', [
+    'uses' => '\Prego\Http\Controllers\ProjectTasksController@postNewTask',
+    'as' => 'projects.tasks.create'
+]);
+
+Route::get('projects/{projects}/tasks/{tasks}/edit', [
+    'uses' => '\Prego\Http\Controllers\ProjectTasksController@getOneProjectTask',
+    'as' => 'projects.tasks'
+]);
+
+Route::put('projects/{projects}/tasks/{tasks}', [
+    'uses' => '\Prego\Http\Controllers\ProjectTasksController@updateOneProjectTask',
+]);
+
+Route::delete('projects/{projects}/tasks/{tasks}', [
+    'uses' => '\Prego\Http\Controllers\ProjectTasksController@deleteOneProjectTask',
+]);

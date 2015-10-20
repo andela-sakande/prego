@@ -3,3 +3,4 @@
         {{ session()->get('info') }}
     </div>
 @endif
+
