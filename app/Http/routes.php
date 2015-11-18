@@ -67,3 +67,10 @@ Route::put('projects/{projects}/tasks/{tasks}', [
 Route::delete('projects/{projects}/tasks/{tasks}', [
     'uses' => '\Prego\Http\Controllers\ProjectTasksController@deleteOneProjectTask',
 ]);
+
+# Files routes
+Route::post('projects/{projects}/files', [
+     'uses' => '\Prego\Http\Controllers\FilesController@uploadAttachments',
+     'as'   => 'projects.files',
+     'middleware' => ['auth']
+]);
