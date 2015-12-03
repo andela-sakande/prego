@@ -5,6 +5,7 @@ namespace Prego\Http\Controllers;
 use Auth;
 use Prego\File;
 use Prego\Task;
+use Prego\Comment;
 use Prego\Project;
 use Prego\Http\Requests;
 use Illuminate\Http\Request;
@@ -71,7 +72,9 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $tasks = $this->getTasks($id);
         $files = $this->getFiles($id);
-        return view('projects.show')->withProject($project)->withTasks($tasks)->withFiles($files);
+        $comments = $this->getComments($id);
+
+        return view('projects.show')->withProject($project)->withTasks($tasks)->withFiles($files)->withComments($comments);
     }
 
     /**
@@ -139,5 +142,16 @@ class ProjectController extends Controller
     {
         $files =  File::project($id)->get();
         return $files;
+    }
+
+    /**
+     * Get all the comments that were made on a Project
+     * @param  integer $id
+     * @return collection
+     */
+    public function getComments($id)
+    {
+        $comments = Comment::project($id)->get();
+        return $comments;
     }
 }
